@@ -1,0 +1,63 @@
+schema: main
+name: mart_calendar
+title: 日本の暦データ
+description: 1955年から2027年までの日本の暦を1日1行で収録したマスタ。祝日名・振替休日・曜日・平日/土日の判定に加え、会計年度・四半期、和暦（元号・和暦年）を各日付に付与する。
+keywords:
+  - カレンダー
+  - 祝日
+  - 和暦
+  - 日付
+published: true
+sources:
+  - path: https://www8.cao.go.jp/chosei/shukujitsu/gaiyou.html
+fields:
+  - name: date
+    title: 日付
+    description: 主キー (1955-01-01〜2027-12-31)
+  - name: year
+    title: 年
+  - name: month
+    title: 月
+  - name: day
+    title: 日
+  - name: weekday_code
+    title: 曜日コード
+    description: 'ISO 8601: 月曜=1〜日曜=7'
+  - name: weekday
+    title: 曜日
+    description: 月曜日〜日曜日
+  - name: is_holiday
+    title: 祝日フラグ
+    description: 国民の祝日 (振替休日を含まない)
+  - name: holiday_name
+    title: 祝日名
+    description: 祝日でない場合はNULL
+  - name: is_substitute_holiday
+    title: 振替休日フラグ
+  - name: is_sat
+    title: 土曜フラグ
+  - name: is_sun
+    title: 日曜フラグ
+  - name: is_sat_sun
+    title: 土日フラグ
+  - name: is_sat_sun_holiday
+    title: 土日祝フラグ
+    description: 土曜・日曜・祝日・振替休日のいずれか
+  - name: is_weekday
+    title: 平日フラグ
+    description: 土日祝でない日
+  - name: fiscal_year
+    title: 会計年度
+    description: '4月始まり (例: 2020-03-31 → 2019)'
+  - name: fiscal_quarter
+    title: 会計四半期
+    description: Q1=4〜6月, Q2=7〜9月, Q3=10〜12月, Q4=1〜3月
+  - name: wareki_era
+    title: 和暦元号
+    description: 明治/大正/昭和/平成/令和
+  - name: wareki_year
+    title: 和暦年
+    description: 元号内の年数
+  - name: wareki_label
+    title: 和暦ラベル
+    description: '例: 令和2年'

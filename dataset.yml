@@ -1,0 +1,38 @@
+spec_version: "0.1"
+name: calendar
+title: 日本の暦データ
+description: 1955年〜2027年の日付スパインに祝日・曜日・和暦・会計年度を付与した日本の暦データ
+keywords: [カレンダー, 祝日, 和暦, 日付]
+homepage: https://github.com/queria-io/dataset-calendar
+language: ja
+
+licenses: [JP-GOV-STD-2.0]
+
+sources:
+  - title: 国民の祝日について（内閣府）
+    path: https://www8.cao.go.jp/chosei/shukujitsu/gaiyou.html
+
+contributors:
+  - title: 内閣府
+    path: https://www.cao.go.jp/
+    roles: [rightsHolder]
+
+temporal_coverage: { start: "1955-01-01", end: "2027-12-31" }
+spatial_coverage: [JP]
+update_frequency: yearly
+cover: "📅"
+
+ai_context:
+  instructions: |
+    営業日計算、月次・四半期集計の期間切り出し、和暦との相互変換に使う。
+    is_weekday は土日祝を除いた日で、企業ごとの営業日とは一致しない。
+    収録範囲は 1955-01-01 から 2027-12-31 までで、その外の日付は存在しない。
+  synonyms: [祝日カレンダー, 営業日, 日付マスタ, 和暦変換]
+  examples:
+    - 2026年の営業日は何日ある？
+    - 祝日を除いた月ごとの日数を出したい
+    - この日付は令和何年？
+
+schemas:
+  - name: main
+    title: メイン
