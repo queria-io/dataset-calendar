@@ -6,8 +6,8 @@ from pathlib import Path
 from dbt.cli.main import dbtRunner
 
 CSV_URL = "https://www8.cao.go.jp/chosei/shukujitsu/syukujitsu.csv"
-FDL_DIR = Path(".fdl")
-CSV_PATH = FDL_DIR / "holidays.csv"
+WORK_DIR = Path(".queria")
+CSV_PATH = WORK_DIR / "holidays.csv"
 
 
 def main():
@@ -30,7 +30,7 @@ def main():
 
 def _download_holidays() -> None:
     """内閣府の祝日 CSV をダウンロードし UTF-8 に変換して保存する。"""
-    FDL_DIR.mkdir(exist_ok=True)
+    WORK_DIR.mkdir(exist_ok=True)
     with urllib.request.urlopen(CSV_URL) as resp:
         data = resp.read()
     text = data.decode("cp932")
