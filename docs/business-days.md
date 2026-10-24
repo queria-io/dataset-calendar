@@ -3,7 +3,7 @@ title: 営業日・祝日を SQL で扱う
 order: 1
 ---
 
-`mart_calendar` は1955年から数年先までの1日1行のカレンダーで、祝日・振替休日・曜日・年度・和暦のフラグを持ちます。「今月の営業日数」「次の営業日」のような業務ロジックが JOIN 1つで書けます。
+`calendar.calendar.day` は1955年から数年先までの1日1行のカレンダーで、祝日・振替休日・曜日・年度・和暦のフラグを持ちます。「今月の営業日数」「次の営業日」のような業務ロジックが JOIN 1つで書けます。
 
 ## 営業日判定は is_weekday を使う
 
@@ -11,7 +11,7 @@ order: 1
 
 ```sql
 SELECT date, weekday, is_holiday, holiday_name, is_weekday
-FROM calendar.main.mart_calendar
+FROM calendar.calendar.day
 WHERE date BETWEEN DATE '2026-05-03' AND DATE '2026-05-07'
 ORDER BY date
 ```
@@ -22,7 +22,7 @@ ORDER BY date
 
 ```sql
 SELECT COUNT(*) FILTER (is_weekday) AS business_days
-FROM calendar.main.mart_calendar
+FROM calendar.calendar.day
 WHERE year = year(CURRENT_DATE) AND month = month(CURRENT_DATE)
 ```
 
@@ -32,7 +32,7 @@ WHERE year = year(CURRENT_DATE) AND month = month(CURRENT_DATE)
 
 ```sql
 SELECT MIN(date) AS next_business_day
-FROM calendar.main.mart_calendar
+FROM calendar.calendar.day
 WHERE date > CURRENT_DATE AND is_weekday
 ```
 
@@ -40,7 +40,7 @@ WHERE date > CURRENT_DATE AND is_weekday
 
 ```sql
 SELECT date AS due_date
-FROM calendar.main.mart_calendar
+FROM calendar.calendar.day
 WHERE date > CURRENT_DATE AND is_weekday
 ORDER BY date
 LIMIT 1 OFFSET 4
@@ -55,7 +55,7 @@ SELECT
   month,
   COUNT(*) FILTER (is_weekday) AS business_days,
   COUNT(*) FILTER (is_holiday) AS holidays
-FROM calendar.main.mart_calendar
+FROM calendar.calendar.day
 WHERE year = 2026
 GROUP BY month
 ORDER BY month
@@ -67,7 +67,7 @@ ORDER BY month
 
 ```sql
 SELECT date, fiscal_year, fiscal_quarter, wareki_label
-FROM calendar.main.mart_calendar
+FROM calendar.calendar.day
 WHERE date = CURRENT_DATE
 ```
 
@@ -84,7 +84,7 @@ SELECT
   SUM(s.amount) AS total,
   SUM(s.amount) / COUNT(DISTINCT c.date) FILTER (c.is_weekday) AS per_business_day
 FROM sales s
-JOIN calendar.main.mart_calendar c ON s.date = c.date
+JOIN calendar.calendar.day c ON s.date = c.date
 GROUP BY ALL
 ORDER BY c.year, c.month;
 ```
