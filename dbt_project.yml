@@ -20,5 +20,3 @@ models:
     main:
       raw:
         +materialized: table
-      mart:
-        +materialized: view
