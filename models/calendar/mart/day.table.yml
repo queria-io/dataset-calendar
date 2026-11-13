@@ -11,7 +11,6 @@ keywords:
   - 祝日
   - 和暦
   - 日付
-published: true
 primary_key: date
 sources:
   - path: https://www8.cao.go.jp/chosei/shukujitsu/gaiyou.html
