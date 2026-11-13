@@ -1,7 +1,7 @@
 schema: main
 name: raw_holidays
 description: 内閣府の「国民の祝日」CSVの生データ（祝日・振替休日を含む）
-published: false
+annotations: { queria: { published: false } }
 fields:
   - name: date
     description: 日付
