@@ -8,7 +8,7 @@ holidays as (
     select
         date,
         holiday_name
-    from {{ ref('raw_holidays') }}
+    from {{ ref('stg_holidays') }}
 ),
 
 joined as (
