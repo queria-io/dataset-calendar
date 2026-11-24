@@ -1,20 +1,20 @@
-schema: calendar
-name: day
+$schema: https://tabledoc.queria.io/schemas/table/v1.json
 title: 日本の暦データ
 description: |-
   1955 年から 2027 年までの日本の暦を 1 日 1 行で持つマスタです。祝日名・振替休日・曜日・平日判定・会計年度・和暦を付けています。
 
   - is_holiday は国民の祝日だけで、振替休日を含みません。休日の判定には is_sat_sun_holiday を使ってください
   - 会計年度は 4 月始まりです
-keywords:
+topics:
   - カレンダー
   - 祝日
   - 和暦
   - 日付
-primary_key: [date]
+primary_key:
+  - date
 sources:
-  - path: https://www8.cao.go.jp/chosei/shukujitsu/gaiyou.html
-fields:
+  - gaiyou
+columns:
   - name: date
     title: 日付
     description: 1955-01-01〜2027-12-31

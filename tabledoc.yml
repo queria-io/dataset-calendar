@@ -1,0 +1,40 @@
+$schema: https://tabledoc.queria.io/schemas/dataset/v1.json
+name: calendar
+title: 日本の暦データ
+description: |-
+  1955 年から 2027 年までの日本の暦を 1 日 1 行にまとめ、祝日・振替休日・曜日・会計年度・和暦を付けたデータセットです。
+
+  出典：内閣府「国民の祝日について」の祝日データを加工して作成。
+image: cover.png
+topics:
+  - カレンダー
+  - 祝日
+  - 和暦
+  - 日付
+synonyms:
+  - 祝日カレンダー
+  - 営業日
+  - 日付マスタ
+  - 和暦変換
+language: ja
+licenses:
+  - JP-GOV-STD-2.0
+sources:
+  - id: gaiyou
+    title: 国民の祝日について（内閣府）
+    url: https://www8.cao.go.jp/chosei/shukujitsu/gaiyou.html
+contributors:
+  - id: cao
+    title: 内閣府
+    url: https://www.cao.go.jp/
+    roles:
+      - rightsHolder
+temporal_coverage:
+  start: '1955-01-01'
+  end: '2027-12-31'
+spatial_coverage:
+  - JP
+update_frequency: yearly
+schemas:
+  - name: main
+    title: メイン

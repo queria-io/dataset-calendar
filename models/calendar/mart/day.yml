@@ -2,7 +2,6 @@ version: 2
 
 models:
   - name: day
-    description: 1955年から2027年までの日本の暦を1日1行で収録したマスタ。祝日名・振替休日・曜日・平日/土日の判定に加え、会計年度・四半期、和暦（元号・和暦年）を各日付に付与する。
     access: public
     config:
       contract:
